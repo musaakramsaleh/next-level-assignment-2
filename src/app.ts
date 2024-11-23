@@ -1,7 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import { bicycleroutes } from "./app/modules/bicycle/bicycle.route";
-import { orderRoutes } from "./app/modules/order/order.route";
+import { orderrouter } from "./app/modules/orders/orders.routes";
 const app: Application = express();
 
 //parsers
@@ -10,7 +10,8 @@ app.use(cors());
 
 //application routes
 app.use("/api/products/", bicycleroutes);
-app.use("/api/orders/", orderRoutes);
+app.use("/api/orders/", orderrouter);
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
