@@ -60,9 +60,14 @@ The application will run on the port defined in your .env file (default: 5000).
 
 Endpoints
 Bicycles
-GET /api/bicycles: Fetch a list of all bicycles.
-POST /api/bicycles: Add a new bicycle to the store.
-GET /api/bicycles/:id: Get details of a specific bicycle.
-PUT /api/bicycles/:id: Update the details of a specific bicycle.
-DELETE /api/bicycles/:id: Delete a bicycle from the store.
+GET /api/products: Fetch a list of all bicycles.
+POST /api/products: Add a new bicycle to the store.
+GET /api/products/:id   : Get details of a specific bicycle.
+PUT /api/products/:id   : Update the details of a specific bicycle.
+DELETE /api/products/:id : Delete a bicycle from the store.
+POST /api/orders/  creates new order
+GET /api/orders/  get all order
+GET /api/orders/:id  get specific order
+DELETE /api/orders/:id  Delete specific order
+GET /api/order/revenue  showa total revenue ffrom sale
 ```
