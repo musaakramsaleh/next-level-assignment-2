@@ -51,6 +51,8 @@ git clone https://github.com/musaakramsaleh/next-level-assignment-2.git
 cd bicycle-store
 ```
 
+---
+
 ###Setup Environment Variables
 
 ```bash
@@ -63,9 +65,9 @@ Start the server with TypeScript compilation:
 
 npm run dev
 The application will run on the port defined in your .env file (default: 5000).
-```
 
-Endpoints
+
+###Endpoints
 Bicycles
 GET /api/products: Fetch a list of all bicycles.
 POST /api/products: Add a new bicycle to the store.
@@ -77,3 +79,4 @@ GET /api/orders/ get all order
 GET /api/orders/:id get specific order
 DELETE /api/orders/:id Delete specific order
 GET /api/order/revenue showa total revenue ffrom sale
+```
