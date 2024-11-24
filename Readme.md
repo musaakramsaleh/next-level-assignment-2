@@ -49,9 +49,15 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/musaakramsaleh/next-level-assignment-2.git
 cd bicycle-store
+```
 
 ###Setup Environment Variables
+
+```bash
 Create a .env file in the root of the project and configure it with your MongoDB connection URI and the desired server port:
+```
+
+```bash
 ###Run the Application
 Start the server with TypeScript compilation:
 
