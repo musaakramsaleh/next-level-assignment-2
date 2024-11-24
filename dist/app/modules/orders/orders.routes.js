@@ -8,4 +8,5 @@ const express_1 = __importDefault(require("express"));
 const orders_controller_1 = require("./orders.controller");
 const router = express_1.default.Router();
 router.post("/", orders_controller_1.orderControls.createorder);
+router.get("/revenue", orders_controller_1.orderControls.calculateRevenue);
 exports.orderrouter = router;

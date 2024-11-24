@@ -7,7 +7,7 @@ exports.bicycleroutes = void 0;
 const express_1 = __importDefault(require("express"));
 const bicycle_controller_1 = require("./bicycle.controller");
 const router = express_1.default.Router();
-router.post("/create-bicycle", bicycle_controller_1.bicyclecontrollers.createBicycle);
+router.post("/", bicycle_controller_1.bicyclecontrollers.createBicycle);
 router.get("/", bicycle_controller_1.bicyclecontrollers.getBicycle);
 router.get("/:productId", bicycle_controller_1.bicyclecontrollers.getSinglebicycle);
 router.put("/:productId", bicycle_controller_1.bicyclecontrollers.Updatebicycle);

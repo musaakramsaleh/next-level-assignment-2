@@ -14,13 +14,8 @@ const orders_service_1 = require("./orders.service");
 const createorder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = req.body;
-        console.log(data);
         const result = yield orders_service_1.orderServices.createorderintoDB(data);
-        res.status(200).json({
-            message: result,
-            status: true,
-            data: result,
-        });
+        res.send(result);
     }
     catch (error) {
         res.status(500).json({
@@ -29,6 +24,25 @@ const createorder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 });
+const calculateRevenue = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const totalRevenue = yield orders_service_1.orderServices.calculateRevenuwService();
+        res.status(200).json({
+            message: "Revenue calculated successfully",
+            status: true,
+            data: totalRevenue, // Return the totalRevenue object directly
+        });
+    }
+    catch (error) {
+        console.error("Error calculating revenue:", error);
+        res.status(500).json({
+            message: "Error calculating revenue",
+            status: false,
+            error: error.message,
+        });
+    }
+});
 exports.orderControls = {
     createorder,
+    calculateRevenue,
 };

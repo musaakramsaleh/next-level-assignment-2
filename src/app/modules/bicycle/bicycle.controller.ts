@@ -41,7 +41,6 @@ const getBicycle = async (req: Request, res: Response) => {
 const getSinglebicycle = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    console.log(productId);
     const result = await bicycleServices.getSinglebicycle(productId as string);
     res.status(200).json({
       success: true,

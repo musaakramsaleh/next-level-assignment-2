@@ -18,6 +18,11 @@ const getBicyclefromDB = async (searchterm?: string) => {
 };
 const getSinglebicycle = async (productId: string) => {
   const result = await Bicyclemodel.find({ _id: productId });
+  console.log(result);
+  if (result.length === 0) {
+    const message = "No data found";
+    return message;
+  }
   return result;
 };
 const Updatebicycle = async (id: string, data: Ibicycle) => {
