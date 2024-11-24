@@ -36,6 +36,22 @@ const createorderintoDB = async (order: Iorder) => {
   };
   return message;
 };
+const getorders = async () => {
+  const result = await OrderModel.find();
+  return result;
+};
+const getsingleorder = async (id: string) => {
+  const result = await OrderModel.find({ _id: id });
+  if (result.length === 0) {
+    const message = "No data found";
+    return message;
+  }
+  return result;
+};
+const deleteorder = async (id: string) => {
+  const result = await OrderModel.findByIdAndDelete(id);
+  return result;
+};
 const calculateRevenuwService = async () => {
   const result = await OrderModel.aggregate([
     {
@@ -58,4 +74,7 @@ const calculateRevenuwService = async () => {
 export const orderServices = {
   createorderintoDB,
   calculateRevenuwService,
+  getorders,
+  getsingleorder,
+  deleteorder,
 };

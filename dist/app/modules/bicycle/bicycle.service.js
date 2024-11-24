@@ -28,6 +28,11 @@ const getBicyclefromDB = (searchterm) => __awaiter(void 0, void 0, void 0, funct
 });
 const getSinglebicycle = (productId) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield bicycle_model_1.Bicyclemodel.find({ _id: productId });
+    console.log(result);
+    if (result.length === 0) {
+        const message = "No data found";
+        return message;
+    }
     return result;
 });
 const Updatebicycle = (id, data) => __awaiter(void 0, void 0, void 0, function* () {

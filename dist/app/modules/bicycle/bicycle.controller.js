@@ -51,7 +51,6 @@ const getBicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 const getSinglebicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productId } = req.params;
-        console.log(productId);
         const result = yield bicycle_service_1.bicycleServices.getSinglebicycle(productId);
         res.status(200).json({
             success: true,
