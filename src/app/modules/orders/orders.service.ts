@@ -53,22 +53,27 @@ const deleteorder = async (id: string) => {
   return result;
 };
 const calculateRevenueService = async () => {
-  const revenueData = await OrderModel.aggregate([
-    {
-      $group: {
-        _id: null,
-        totalRevenue: { $sum: "$totalPrice" },
+  try {
+    const revenueData = await OrderModel.aggregate([
+      {
+        $group: {
+          _id: null, // Group all documents together
+          totalRevenue: { $sum: "$totalPrice" }, // Calculate the total revenue
+        },
       },
-    },
-    {
-      $project: {
-        _id: 0,
-        totalRevenue: 1,
+      {
+        $project: {
+          _id: 0, // Exclude the _id field
+          totalRevenue: 1, // Include only the totalRevenue field
+        },
       },
-    },
-  ]);
+    ]);
 
-  return revenueData.length > 0 ? revenueData[0].totalRevenue : 0;
+    return revenueData.length > 0 ? revenueData[0].totalRevenue : 0;
+  } catch (error) {
+    console.error("Error calculating revenue:", error);
+    throw new Error("Failed to calculate revenue");
+  }
 };
 
 export const orderServices = {

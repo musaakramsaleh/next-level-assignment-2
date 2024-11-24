@@ -15,6 +15,8 @@ const createorder = async (req: Request, res: Response) => {
 };
 
 const calculateRevenue = async (req: Request, res: Response) => {
+  const totalRevenue = await orderServices.calculateRevenueService();
+  console.log(totalRevenue);
   try {
     const totalRevenue = await orderServices.calculateRevenueService();
     res.status(200).json({
