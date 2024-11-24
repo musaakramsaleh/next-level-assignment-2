@@ -9,11 +9,17 @@ const createorderintoDB = async (order: Iorder) => {
     return message;
   }
   if (order.quantity > bicycle.quantity) {
-    const message: string = "Insufficient number";
+    const message: object = {
+      message: "Insufficient number",
+      status: false,
+    };
     return message;
   }
   if (order.quantity < 1) {
-    const message: string = "Invalid quantity. Atleast enter 1";
+    const message: object = {
+      message: "Please atleast enter 1",
+      status: false,
+    };
     return message;
   }
   bicycle.quantity -= order.quantity;
@@ -21,9 +27,35 @@ const createorderintoDB = async (order: Iorder) => {
     bicycle.inStock = false;
   }
   bicycle.save();
+  order.totalPrice = bicycle.price * order.quantity;
   const result = await OrderModel.create(order);
-  return result;
+  const message: object = {
+    message: "Order created successfully",
+    status: true,
+    data: result,
+  };
+  return message;
+};
+const calculateRevenuwService = async () => {
+  const result = await OrderModel.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalRevenue: { $sum: "$totalPrice" }, // Summing up all totalPrice fields
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        totalRevenue: 1, // Include totalRevenue in the result
+      },
+    },
+  ]);
+
+  // If no orders are present, set totalRevenue to 0
+  return result.length > 0 ? result[0] : { totalRevenue: 0 };
 };
 export const orderServices = {
   createorderintoDB,
+  calculateRevenuwService,
 };
