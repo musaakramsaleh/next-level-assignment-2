@@ -25,6 +25,7 @@ const getBicycle = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
     const result = await bicycleServices.getBicyclefromDB(searchTerm as string);
+    console.log(result);
     res.status(200).json({
       success: true,
       message: "Bicycle retrieved successfully",

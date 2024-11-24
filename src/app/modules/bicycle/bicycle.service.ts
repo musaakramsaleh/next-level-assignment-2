@@ -13,7 +13,12 @@ const getBicyclefromDB = async (searchterm?: string) => {
       $or: [{ name: regex }, { brand: regex }, { type: regex }],
     };
   }
+
   const result = await Bicyclemodel.find(filter);
+  if (result.length === 0) {
+    const message = "No data found";
+    return message;
+  }
   return result;
 };
 const getSinglebicycle = async (productId: string) => {
