@@ -46,6 +46,22 @@ const createorderintoDB = (order) => __awaiter(void 0, void 0, void 0, function*
     };
     return message;
 });
+const getorders = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield orders_model_1.OrderModel.find();
+    return result;
+});
+const getsingleorder = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield orders_model_1.OrderModel.find({ _id: id });
+    if (result.length === 0) {
+        const message = "No data found";
+        return message;
+    }
+    return result;
+});
+const deleteorder = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield orders_model_1.OrderModel.findByIdAndDelete(id);
+    return result;
+});
 const calculateRevenuwService = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield orders_model_1.OrderModel.aggregate([
         {
@@ -67,4 +83,7 @@ const calculateRevenuwService = () => __awaiter(void 0, void 0, void 0, function
 exports.orderServices = {
     createorderintoDB,
     calculateRevenuwService,
+    getorders,
+    getsingleorder,
+    deleteorder,
 };

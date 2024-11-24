@@ -34,7 +34,59 @@ const calculateRevenue = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
     catch (error) {
-        console.error("Error calculating revenue:", error);
+        res.status(500).json({
+            message: "Error calculating revenue",
+            status: false,
+            error: error.message,
+        });
+    }
+});
+const getorder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield orders_service_1.orderServices.getorders();
+        res.status(200).json({
+            message: "Data retrieved successfully",
+            status: true,
+            data: result,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "Error calculating revenue",
+            status: false,
+            error: error.message,
+        });
+    }
+});
+const singleorder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const result = yield orders_service_1.orderServices.getsingleorder(id);
+        res.status(200).json({
+            success: true,
+            message: "Order data found successfully",
+            data: result,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "Error calculating revenue",
+            status: false,
+            error: error.message,
+        });
+    }
+});
+const orderdelete = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const result = yield orders_service_1.orderServices.deleteorder(id);
+        res.status(200).json({
+            success: true,
+            message: "Order data Deleted successfully",
+            data: {},
+        });
+    }
+    catch (error) {
         res.status(500).json({
             message: "Error calculating revenue",
             status: false,
@@ -45,4 +97,7 @@ const calculateRevenue = (req, res) => __awaiter(void 0, void 0, void 0, functio
 exports.orderControls = {
     createorder,
     calculateRevenue,
+    getorder,
+    singleorder,
+    orderdelete,
 };

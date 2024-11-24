@@ -34,6 +34,7 @@ const getBicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const { searchTerm } = req.query;
         const result = yield bicycle_service_1.bicycleServices.getBicyclefromDB(searchTerm);
+        console.log(result);
         res.status(200).json({
             success: true,
             message: "Bicycle retrieved successfully",

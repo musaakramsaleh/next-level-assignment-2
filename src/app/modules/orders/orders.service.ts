@@ -52,28 +52,28 @@ const deleteorder = async (id: string) => {
   const result = await OrderModel.findByIdAndDelete(id);
   return result;
 };
-const calculateRevenuwService = async () => {
-  const result = await OrderModel.aggregate([
+const calculateRevenueService = async () => {
+  const revenueData = await OrderModel.aggregate([
     {
       $group: {
         _id: null,
-        totalRevenue: { $sum: "$totalPrice" }, // Summing up all totalPrice fields
+        totalRevenue: { $sum: "$totalPrice" },
       },
     },
     {
       $project: {
         _id: 0,
-        totalRevenue: 1, // Include totalRevenue in the result
+        totalRevenue: 1,
       },
     },
   ]);
 
-  // If no orders are present, set totalRevenue to 0
-  return result.length > 0 ? result[0] : { totalRevenue: 0 };
+  return revenueData.length > 0 ? revenueData[0].totalRevenue : 0;
 };
+
 export const orderServices = {
   createorderintoDB,
-  calculateRevenuwService,
+  calculateRevenueService,
   getorders,
   getsingleorder,
   deleteorder,
